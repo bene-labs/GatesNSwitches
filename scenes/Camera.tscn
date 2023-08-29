@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/Camera.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Gates.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 511, 9.75 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 510, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 299.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 299 )
+
+[node name="Camera" type="Camera2D"]
+offset = Vector2( 515, 299 )
+current = true
+limit_left = -2000
+limit_top = -2000
+limit_right = 2000
+limit_bottom = 2000
+editor_draw_limits = true
+script = ExtResource( 1 )
+zoom_scale = 1.1
+max_zoom = 3.0
+min_zoom = 0.5
+relative_buttons_width = 0.1
+
+[node name="Up" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Up"]
+position = Vector2( 515, 8.75 )
+shape = SubResource( 1 )
+
+[node name="Down" type="Area2D" parent="."]
+position = Vector2( 0, 579 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down"]
+position = Vector2( 516, 9.25 )
+shape = SubResource( 3 )
+
+[node name="Left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2( 12, 298.5 )
+shape = SubResource( 2 )
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2( 1004, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2( 12, 301 )
+shape = SubResource( 4 )
+
+[node name="Gates" parent="." instance=ExtResource( 2 )]
+
+[connection signal="mouse_entered" from="Up" to="." method="_on_Up_mouse_entered"]
+[connection signal="mouse_exited" from="Up" to="." method="_on_Up_mouse_exited"]
+[connection signal="mouse_entered" from="Down" to="." method="_on_Down_mouse_entered"]
+[connection signal="mouse_exited" from="Down" to="." method="_on_Down_mouse_exited"]
+[connection signal="mouse_entered" from="Left" to="." method="_on_Left_mouse_entered"]
+[connection signal="mouse_exited" from="Left" to="." method="_on_Left_mouse_exited"]
+[connection signal="mouse_entered" from="Right" to="." method="_on_Right_mouse_entered"]
+[connection signal="mouse_exited" from="Right" to="." method="_on_Right_mouse_exited"]

@@ -1,0 +1,157 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://scripts/Gates.gd" type="Script" id=1]
+[ext_resource path="res://sprites/switch_off.png" type="Texture" id=2]
+[ext_resource path="res://scripts/SpawnButton.gd" type="Script" id=3]
+[ext_resource path="res://scenes/gates/Switch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/gates/LightBulb.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sprites/lightbulb.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Nand-gate-en.svg.png" type="Texture" id=7]
+[ext_resource path="res://sprites/Nor-gate-en.svg.png" type="Texture" id=8]
+[ext_resource path="res://sprites/or_gate.png" type="Texture" id=9]
+[ext_resource path="res://sprites/Xor-gate-en.svg.png" type="Texture" id=10]
+[ext_resource path="res://sprites/AndGate.png" type="Texture" id=11]
+[ext_resource path="res://sprites/Xnor-gate-en.svg.png" type="Texture" id=12]
+[ext_resource path="res://sprites/Not-gate-en.svg.png" type="Texture" id=13]
+[ext_resource path="res://sprites/high_constant.png" type="Texture" id=14]
+[ext_resource path="res://sprites/low_constant.png" type="Texture" id=15]
+[ext_resource path="res://scenes/gates/XNorGate.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/gates/NotGate.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/gates/XorGate.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/gates/AndGate.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/gates/HighConstant.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/gates/NorGate.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/gates/OrGate.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/gates/LowConstant.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/gates/NandGate.tscn" type="PackedScene" id=24]
+
+[node name="Gates" type="Node2D"]
+z_index = 4096
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 85.0
+margin_bottom = 646.0
+rect_scale = Vector2( 1, 0.92 )
+color = Color( 0.352941, 0.352941, 0.388235, 0.717647 )
+
+[node name="SpawnButton" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 7.40909
+margin_right = 74.0
+margin_bottom = 57.4091
+icon = ExtResource( 6 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 5 )
+
+[node name="SpawnButton2" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 65.4091
+margin_right = 74.0
+margin_bottom = 115.409
+icon = ExtResource( 2 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 4 )
+
+[node name="SpawnButton3" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 125.409
+margin_right = 74.0
+margin_bottom = 175.409
+icon = ExtResource( 15 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 23 )
+
+[node name="SpawnButton4" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 181.409
+margin_right = 74.0
+margin_bottom = 231.409
+icon = ExtResource( 14 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 20 )
+
+[node name="SpawnButton5" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 239.409
+margin_right = 74.0
+margin_bottom = 289.409
+icon = ExtResource( 11 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 19 )
+
+[node name="SpawnButton6" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 297.409
+margin_right = 74.0
+margin_bottom = 347.409
+icon = ExtResource( 9 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 22 )
+
+[node name="SpawnButton7" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 355.409
+margin_right = 74.0
+margin_bottom = 405.409
+icon = ExtResource( 10 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 18 )
+
+[node name="SpawnButton8" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 415.409
+margin_right = 74.0
+margin_bottom = 465.409
+icon = ExtResource( 7 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 24 )
+
+[node name="SpawnButton9" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 471.409
+margin_right = 74.0
+margin_bottom = 521.409
+icon = ExtResource( 8 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 21 )
+
+[node name="SpawnButton10" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 529.409
+margin_right = 74.0
+margin_bottom = 579.409
+icon = ExtResource( 12 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 16 )
+
+[node name="SpawnButton11" type="Button" parent="ColorRect"]
+margin_left = 10.0
+margin_top = 587.409
+margin_right = 74.0
+margin_bottom = 637.409
+icon = ExtResource( 13 )
+icon_align = 1
+expand_icon = true
+script = ExtResource( 3 )
+gate_prefab = ExtResource( 17 )

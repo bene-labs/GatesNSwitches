@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Output.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Input.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/Xnor-gate-en.svg.png" type="Texture" id=3]
+[ext_resource path="res://scripts/XNorGate.gd" type="Script" id=5]
+
+[node name="XNorGate" type="Node2D" groups=["Gate"]]
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -14, -1 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="Output" parent="." instance=ExtResource( 1 )]
+show_behind_parent = true
+position = Vector2( 104, 0 )
+
+[node name="Inputs" type="Node2D" parent="."]
+show_behind_parent = true
+
+[node name="Input" parent="Inputs" instance=ExtResource( 2 )]
+position = Vector2( -117, -31 )
+on_color = Color( 0.141176, 0.117647, 0.788235, 1 )
+
+[node name="Input2" parent="Inputs" instance=ExtResource( 2 )]
+position = Vector2( -116, 29 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -82, -67, -68, -52, -54, -37, -48, -11, -52, 30, -79, 62, -64, 68, 3, 55, 38, 13, 51, 21, 64, 19, 74, 8, 73, -12, 59, -24, 39, -18, 34, -17, 5, -53, -45, -67 )

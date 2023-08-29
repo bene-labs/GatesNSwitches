@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Output.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Input.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/Nor-gate-en.svg.png" type="Texture" id=3]
+[ext_resource path="res://scripts/NorGate.gd" type="Script" id=5]
+
+[node name="NorGate" type="Node2D" groups=["Gate"]]
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -14, -1 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="Output" parent="." instance=ExtResource( 1 )]
+show_behind_parent = true
+position = Vector2( 93, 0 )
+
+[node name="Inputs" type="Node2D" parent="."]
+show_behind_parent = true
+
+[node name="Input" parent="Inputs" instance=ExtResource( 2 )]
+position = Vector2( -130, -31 )
+
+[node name="Input2" parent="Inputs" instance=ExtResource( 2 )]
+position = Vector2( -129, 29 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -92, -69, -85, -53, -68, -41, -62, 10, -70, 40, -91, 61, -80, 69, -10, 55, 25, 16, 40, 21, 57, 14, 60, 1, 57, -16, 43, -23, 26, -20, 21, -21, 1, -45, -29, -62 )
