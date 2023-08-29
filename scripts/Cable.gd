@@ -11,6 +11,7 @@ export var hover_color = Color.cornflower
 
 var connected_output = null
 var connected_input = null
+var is_hovered = false
 
 func update_loose_point(position) -> bool:
 	if connected_output == null:
@@ -86,6 +87,14 @@ func set_z_index(new_index):
 
 func _on_Area2D_mouse_entered():
 	outline.default_color = hover_color
+	is_hovered = true
 
 func _on_Area2D_mouse_exited():
 	outline.default_color = Color.black
+	is_hovered = false
+
+func _input(event):
+	if not is_hovered:
+		return
+	if Input.is_action_just_pressed("destroy"):
+		queue_free()
