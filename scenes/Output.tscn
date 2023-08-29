@@ -11,7 +11,8 @@ radius = 26.0
 script = ExtResource( 1 )
 off_color = Color( 0.329412, 0.317647, 0.317647, 1 )
 on_color = Color( 0.141176, 0.117647, 0.788235, 1 )
-active_color = Color( 0.45098, 0.792157, 0.894118, 1 )
+inactive_color = Color( 0.917647, 0.752941, 0.490196, 1 )
+active_color = Color( 0.882353, 0.615686, 0.184314, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

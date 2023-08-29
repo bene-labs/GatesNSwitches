@@ -1,5 +1,7 @@
 extends Node2D
 
+signal active_cable_state_changed(is_active)
+
 export var cable_scene = preload("res://scenes/Cable.tscn")
 
 var active_cable : Cable = null
@@ -21,6 +23,7 @@ func _ready():
 		output.connect("clicked", self, "_on_output_clicked")
 		output.connect("released_over", self, "_on_output_released")
 		output.connect("destroyed", self, "remove_output")
+	emit_signal("active_cable_state_changed", false)
 	
 func register_input(input):
 	inputs.append(input)
@@ -65,6 +68,7 @@ func hide_available_connections():
 		input.set_inactive()
 	for output in outputs:
 		output.set_inactive()
+	emit_signal("active_cable_state_changed", false)
 
 func create_new_cable(start_node):
 	if active_cable != null:
@@ -72,11 +76,11 @@ func create_new_cable(start_node):
 		active_cable = null
 	active_cable = cable_scene.instance()
 	add_child(active_cable)
-	active_cable.set_start_point(start_node.global_position)
-	active_cable.set_end_point(get_viewport().get_mouse_position())
-	active_cable.z_index = start_node.z_index - 1
+	active_cable.connect_to(start_node)
+	active_cable.outline.z_index = start_node.z_index - 1
 	
 	active_start_node = start_node
+	emit_signal("active_cable_state_changed", true)
 	
 
 func _on_input_released(over):
@@ -92,7 +96,7 @@ func _on_output_released(over):
 	link_active_cable(over)
 	
 func link_active_cable(end_point):
-	active_cable.set_end_point(end_point.global_position)
+	active_cable.connect_to(end_point)
 	active_start_node.link(end_point, active_cable, 0)
 	end_point.link(active_start_node, active_cable, 1)
 	active_cable = null
@@ -116,4 +120,4 @@ func _input(event):
 	
 func _process(delta):
 	if active_cable != null:
-		active_cable.set_end_point(get_global_mouse_position())
+		assert(active_cable.update_loose_point(get_global_mouse_position()), "ERROR: Active Cable has no losse end!")

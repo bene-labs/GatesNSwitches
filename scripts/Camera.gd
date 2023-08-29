@@ -11,8 +11,7 @@ var collision_width : int = 20
 export var relative_collision_height = 0.04
 var collision_height : int = 20
 
-export var button_offset = Vector2(20, 20)
-export var relative_buttons_heigth = 1
+export var relative_buttons_heigth = 1.0
 var button_heigth = 20
 export var relative_buttons_width = 0.2
 var button_width = 20
@@ -30,6 +29,7 @@ onready var button_rect = $Gates/ColorRect
 
 
 func _ready():
+	get_tree().get_root().connect("size_changed", self, "update_move_rects")
 	update_move_rects()
 
 func _input(event):
@@ -88,7 +88,7 @@ func update_move_rects():
 	right_collision.global_position = Vector2(max_pos.x - collision_width / 2, max_pos.y - view_size.y / 2)
 	right_collision.shape.extents = Vector2(collision_width, view_size.y)
 
-	button_rect.rect_global_position = Vector2(min_pos.x + button_width * 0.02, min_pos.y + button_heigth * 0.015)
+	button_rect.rect_global_position = Vector2(min_pos.x + button_width * 0.025, min_pos.y + (view_size.y * (1.0 - relative_buttons_heigth)) / 2)
 	button_rect.rect_size = Vector2(button_width, button_heigth)
 	$Gates.update_button_dimensions()
 
@@ -115,3 +115,11 @@ func _on_Right_mouse_entered():
 
 func _on_Right_mouse_exited():
 	moving_right = false
+
+
+func _on_Cables_active_cable_state_changed(is_active):
+	button_rect.hide() if is_active else button_rect.show()
+	$Up.input_pickable = is_active
+	$Down.input_pickable = is_active
+	$Left.input_pickable = is_active
+	$Right.input_pickable = is_active

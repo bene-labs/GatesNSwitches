@@ -4,7 +4,6 @@ signal destroyed(output)
 
 var connected_inputs = []
 var connected_cables : Array = []
-var connected_cable_end_indices = []
 
 func _ready():
 	set_state(TriState.State.TRUE)
@@ -17,26 +16,22 @@ func set_state(value):
 		input.set_state(value)
 
 func link(connection, cable, end_idx):
-	cable.connected_output = self
 	connected_inputs.append(connection)
 	connected_cables.append(cable)
-	connected_cable_end_indices.append(end_idx)
 	for cable in connected_cables:
 		cable.adjust_color(state)
 
 func remove_cable(cable):
 	var idx_to_remove = connected_cables.find(cable)
+	if idx_to_remove < 0:
+		return
+	
 	connected_cables.remove(idx_to_remove)
-	connected_cable_end_indices.remove(idx_to_remove)
 	connected_inputs[idx_to_remove].connected_output = null
 	connected_inputs.remove(idx_to_remove)
 
 func is_available():
 	return true
-
-func _on_position_changed():
-	for i in range(connected_cables.size()):
-		connected_cables[i].set_point_by_index(global_position, connected_cable_end_indices[i])
 
 func _on_z_index_changed(new_index):
 	._on_z_index_changed(new_index)

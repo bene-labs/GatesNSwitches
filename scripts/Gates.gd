@@ -41,8 +41,8 @@ func _input(event):
 
 func update_button_dimensions():
 	for i in range(buttons.size()):
-		buttons[i].rect_size = Vector2(button_rect.rect_size.x * 0.9,  button_rect.rect_size.y / 12.25)
-		buttons[i].rect_position = Vector2(button_rect.rect_size.x * 0.05,  button_rect.rect_size.y / 11 * i)
+		buttons[i].rect_size = Vector2(button_rect.rect_size.x * 0.9,  button_rect.rect_size.y / (buttons.size() + 1.25) )
+		buttons[i].rect_position = Vector2(button_rect.rect_size.x * 0.05,  button_rect.rect_size.y / buttons.size() * i)
 
 func _on_gate_spawned(new_gate : Gate):
 	gates.append(new_gate)

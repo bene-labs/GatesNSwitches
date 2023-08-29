@@ -3,6 +3,7 @@ class_name Connection extends Area2D
 signal state_changed
 signal clicked(node)
 signal released_over(node)
+signal position_changed(new_pos)
 
 export var undefined_color = Color.red
 export var off_color = Color.gray
@@ -20,7 +21,7 @@ var is_active : bool = false
 
 var state = TriState.new()
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	connect("mouse_entered", self, "_on_mouse_entered")
 	connect("mouse_exited", self, "_on_mouse_exited")
@@ -60,13 +61,16 @@ func _input(event):
 		emit_signal("clicked", self)
 	elif is_active and Input.is_action_just_released("cable"):
 		emit_signal("released_over", self)
-		
+
 func is_available():
 	return false
-	
+
 func _on_z_index_changed(new_index):
 	pass
 
 func set_z_index(value, wire_offset = 0):
 	sprite.z_index = value
 	wire.z_index = wire_offset
+
+func _on_position_changed():
+	emit_signal("position_changed", global_position)

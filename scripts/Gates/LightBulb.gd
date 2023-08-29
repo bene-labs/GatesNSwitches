@@ -5,6 +5,7 @@ export var off_color = Color.gray
 export var on_color = Color.yellow
 
 onready var sprite = $Bulb
+onready var outline = $Sprite
 
 func _on_Input_state_changed():
 	var state = inputs[0].state
@@ -13,4 +14,5 @@ func _on_Input_state_changed():
 
 func set_z_index(new_idx):
 	.set_z_index(new_idx)
-	sprite.z_index = new_idx + 1
+	outline.z_index = new_idx - 1
+	sprite.z_index = new_idx

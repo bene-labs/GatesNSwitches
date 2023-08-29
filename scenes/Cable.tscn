@@ -1,13 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://scripts/Cable.gd" type="Script" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 5 )
-
-[node name="Cable" type="Area2D"]
+[node name="Cable" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
 script = ExtResource( 1 )
-off_color = Color( 0.329412, 0.317647, 0.317647, 1 )
 on_color = Color( 0.141176, 0.117647, 0.788235, 1 )
 
 [node name="Outline" type="Line2D" parent="."]
@@ -15,11 +13,14 @@ points = PoolVector2Array( 0, 0, 20, 0 )
 width = 18.0
 default_color = Color( 0, 0, 0, 1 )
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="Outline"]
 points = PoolVector2Array( 0, 0, 20, 0 )
 default_color = Color( 0.94902, 0.94902, 0.94902, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 10, 0 )
-shape = SubResource( 1 )
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 0, -9, 0, 9, 20, 9, 20, -9 )
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]

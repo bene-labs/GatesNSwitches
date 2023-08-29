@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://scenes/gates/4BitDigit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Cables.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Camera.tscn" type="PackedScene" id=6]
@@ -7,13 +8,12 @@
 [ext_resource path="res://scenes/gates/Switch.tscn" type="PackedScene" id=14]
 
 [node name="Game" type="Node2D"]
-position = Vector2( 23, 942 )
 
 [node name="Background" parent="." instance=ExtResource( 5 )]
 scale = Vector2( 1.25, 1.25 )
 
 [node name="Switch" parent="." instance=ExtResource( 14 )]
-position = Vector2( 186, 454 )
+position = Vector2( 182, 295 )
 
 [node name="Camera" parent="." instance=ExtResource( 6 )]
 limit_left = -6250
@@ -25,3 +25,8 @@ limit_bottom = 4720
 
 [node name="LightBulb" parent="." instance=ExtResource( 7 )]
 position = Vector2( 551, 124 )
+
+[node name="4BitDigit" parent="." instance=ExtResource( 1 )]
+position = Vector2( 756, 318 )
+
+[connection signal="active_cable_state_changed" from="Cables" to="Camera" method="_on_Cables_active_cable_state_changed"]

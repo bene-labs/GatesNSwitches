@@ -27,6 +27,7 @@ script = ExtResource( 1 )
 zoom_scale = 1.1
 max_zoom = 3.0
 min_zoom = 0.5
+relative_buttons_heigth = 0.95
 relative_buttons_width = 0.1
 
 [node name="Up" type="Area2D" parent="."]

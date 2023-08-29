@@ -9,7 +9,7 @@ signal destroy
 export var hover_color = Color.lightblue
 var default_color
 
-onready var output : Output = get_node_or_null("Output")
+onready var output = get_node_or_null("Output")
 onready var collision = $Area2D
 onready var image = $Sprite
 

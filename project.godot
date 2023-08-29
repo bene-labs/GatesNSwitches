@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
+"base": "Control",
 "class": "Cable",
 "language": "GDScript",
 "path": "res://scripts/Cable.gd"
@@ -50,7 +50,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="BrackeyGameJam_2023"
+config/name="GatesNSwitches"
 run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
 
