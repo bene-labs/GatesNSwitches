@@ -37,12 +37,8 @@ func adjust_color(state):
 func set_start_point(point : Vector2):
 	line.points[0] = point
 	outline.points[0] = point
-	#collision_shape.position = outline.points[0] + (outline.points[1] - outline.points[0]) / 2
-
+	
 	calc_collision(outline.points[0], outline.points[-1])
-	#collision_shape.look_at(outline.points[1])
-	#collision_shape.shape.extents.x = outline.points[0].distance_to(outline.points[1]) / 2
-	#collision_shape.shape.extents.x -= side_offset
 
 func get_start_point():
 	return line.points[0]
@@ -52,11 +48,6 @@ func set_end_point(point : Vector2):
 	outline.points[1] = point
 	
 	calc_collision(outline.points[0], outline.points[-1])
-	
-	#collision_shape.position = outline.points[0] + (outline.points[1] - outline.points[0]) / 2
-	#collision_shape.look_at(outline.points[1])
-	#collision_shape.shape.extents.x = outline.points[0].distance_to(outline.points[1]) / 2
-	#collision_shape.shape.extents.x -= side_offset
 
 func calc_collision(start, end):
 	collision_shape.polygon[0] = start + start.direction_to(end) * side_offset + \

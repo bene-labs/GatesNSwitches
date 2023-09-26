@@ -69,6 +69,7 @@ func hide_available_connections():
 	for output in outputs:
 		output.set_inactive()
 	emit_signal("active_cable_state_changed", false)
+	CursorCollision.remove_from_whitelist("Input" if is_input_required else "Output")
 
 func create_new_cable(start_node):
 	if active_cable != null:
@@ -81,6 +82,7 @@ func create_new_cable(start_node):
 	
 	active_start_node = start_node
 	emit_signal("active_cable_state_changed", true)
+	CursorCollision.add_to_whitelist("Input" if is_input_required else "Output")
 	
 
 func _on_input_released(over):

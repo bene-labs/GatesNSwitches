@@ -6,8 +6,18 @@ var hovered_element = null
 var is_mouse_movement = false
 var is_locked = false
 
+var whitelist : Array
+
 func _ready():
 	pass
+
+func add_to_whitelist(type):
+	if whitelist.has(type):
+		return
+	whitelist.append(type)
+
+func remove_from_whitelist(type):
+	whitelist.erase(type)
 
 func lock():
 	is_locked = true
@@ -47,6 +57,11 @@ func _input(event):
 		return
 	var mous_pos = get_global_mouse_position()
 	for element in elements:
+		if whitelist.size() != 0:
+			var test = element.name
+			if not whitelist.has(test):
+				continue
+			
 		if element.is_point_inside(mous_pos):
 			if element == hovered_element:
 				return

@@ -9,7 +9,7 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 inactive_color = Color( 0.917647, 0.752941, 0.490196, 1 )
-active_color = Color( 0.882353, 0.615686, 0.184314, 1 )
+active_color = Color( 0.803922, 0.529412, 0.0823529, 1 )
 
 [node name="InteractionPoint" type="Sprite" parent="."]
 self_modulate = Color( 0.576471, 0.423529, 0.423529, 1 )
