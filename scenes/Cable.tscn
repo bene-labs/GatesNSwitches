@@ -2,9 +2,8 @@
 
 [ext_resource path="res://scripts/Cable.gd" type="Script" id=1]
 
-[node name="Cable" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="Cable" type="Node2D"]
+z_index = -1
 script = ExtResource( 1 )
 on_color = Color( 0.141176, 0.117647, 0.788235, 1 )
 
@@ -19,8 +18,6 @@ default_color = Color( 0.94902, 0.94902, 0.94902, 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( 0, -9, 0, 9, 20, 9, 20, -9 )
-
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
+[node name="CollisionShape" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( 10, 0 )
+polygon = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0 )

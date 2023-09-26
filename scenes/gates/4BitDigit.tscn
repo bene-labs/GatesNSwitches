@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/Input.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sprites/Digits/two.png" type="Texture" id=2]
@@ -20,9 +20,6 @@
 [ext_resource path="res://sprites/Digits/digit_off.png" type="Texture" id=18]
 [ext_resource path="res://sprites/Digits/A.png" type="Texture" id=19]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 48.5, 101.5 )
-
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 2 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 9 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 7 ), ExtResource( 19 ), ExtResource( 3 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 18 ) ],
@@ -34,14 +31,8 @@ animations = [ {
 [node name="4BitDigit" type="Node2D" groups=["Gate"]]
 script = ExtResource( 4 )
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 127, 39 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -78.5, 62.5 )
-shape = SubResource( 2 )
-
 [node name="Sprite" type="Node2D" parent="."]
+position = Vector2( -53, -101 )
 
 [node name="Outline" type="ColorRect" parent="Sprite"]
 margin_right = 110.0
@@ -63,6 +54,7 @@ frames = SubResource( 3 )
 
 [node name="Inputs" type="Node2D" parent="."]
 show_behind_parent = true
+position = Vector2( -53, -101 )
 
 [node name="Input" parent="Inputs" instance=ExtResource( 1 )]
 position = Vector2( -69, 19 )
@@ -75,3 +67,8 @@ position = Vector2( -69, 130 )
 
 [node name="Input4" parent="Inputs" instance=ExtResource( 1 )]
 position = Vector2( -69, 186 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -53, -102, 57, -100, 59, 103, -54, 101 )

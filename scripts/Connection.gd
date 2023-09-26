@@ -1,20 +1,18 @@
-class_name Connection extends Area2D
+class_name Connection extends Sprite
 
 signal state_changed
 signal clicked(node)
 signal released_over(node)
 signal position_changed(new_pos)
 
+export var collision_radius = 26.0
 export var undefined_color = Color.red
-export var off_color = Color.gray
-export var on_color = Color.yellow
-export var inactive_color = Color.beige
-export var active_color = Color.blue
-
-onready var sprite : Sprite = $Input
-onready var wire = $Input/InteractionPoint/Wire
-onready var interactionSprite : Sprite = $Input/InteractionPoint
-onready var collision : CollisionShape2D = $CollisionShape2D
+export var off_color = Color("545151")
+export var on_color = Color("241ec9")
+export var inactive_color = Color("b1e2f1")
+export var active_color = Color("65c2dd")
+onready var wire = $InteractionPoint/Wire
+onready var interactionSprite : Sprite = $InteractionPoint
 
 var is_hovered : bool = false
 var is_active : bool = false
@@ -23,10 +21,9 @@ var state = TriState.new()
 
 
 func _ready():
-	connect("mouse_entered", self, "_on_mouse_entered")
-	connect("mouse_exited", self, "_on_mouse_exited")
 	set_state(TriState.State.UNDEFINED)
 	interactionSprite.self_modulate = inactive_color
+	CursorCollision.register(self)
 
 func set_state(value):
 	if value != state.get_state():
@@ -34,9 +31,12 @@ func set_state(value):
 		emit_signal("state_changed")
 	else:
 		state.set_state(value)
-	sprite.self_modulate = undefined_color if state.is_undefined() else \
+	self_modulate = undefined_color if state.is_undefined() else \
 		(on_color if state.is_true() else off_color)
 
+func is_point_inside(point):
+	return global_position.distance_to(point) <= collision_radius
+	
 func _on_mouse_entered():
 	interactionSprite.scale = Vector2(1.15, 1.15)
 	is_hovered = true
@@ -69,8 +69,14 @@ func _on_z_index_changed(new_index):
 	pass
 
 func set_z_index(value, wire_offset = 0):
-	sprite.z_index = value
+	z_index = value
 	wire.z_index = wire_offset
 
+func get_z_index():
+	return z_index
+	
 func _on_position_changed():
 	emit_signal("position_changed", global_position)
+
+func _exit_tree():
+	CursorCollision.unregister(self)

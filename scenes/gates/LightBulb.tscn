@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Gates/LightBulb.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Input.gd" type="Script" id=2]
 [ext_resource path="res://sprites/Pin_under.png" type="Texture" id=3]
 [ext_resource path="res://sprites/lightbulb.svg" type="Texture" id=4]
 [ext_resource path="res://sprites/Pin_outline.png" type="Texture" id=5]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 26.0192
 
 [node name="LightBulb" type="Node2D" groups=["Gate"]]
 script = ExtResource( 1 )
@@ -29,45 +26,34 @@ texture = ExtResource( 4 )
 show_behind_parent = true
 position = Vector2( 1, -2 )
 
-[node name="Input" type="Area2D" parent="Inputs" groups=["Input"]]
-self_modulate = Color( 0, 0, 0, 1 )
+[node name="Input" type="Sprite" parent="Inputs"]
 position = Vector2( 0, 138 )
 rotation = -1.5708
-script = ExtResource( 2 )
-off_color = Color( 0.329412, 0.317647, 0.317647, 1 )
-on_color = Color( 0.141176, 0.117647, 0.788235, 1 )
-inactive_color = Color( 0.694118, 0.886275, 0.945098, 1 )
-active_color = Color( 0.45098, 0.792157, 0.894118, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inputs/Input"]
-shape = SubResource( 1 )
-
-[node name="Input" type="Sprite" parent="Inputs/Input"]
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
+script = ExtResource( 2 )
 
-[node name="InteractionPoint" type="Sprite" parent="Inputs/Input/Input"]
+[node name="InteractionPoint" type="Sprite" parent="Inputs/Input"]
 self_modulate = Color( 0.576471, 0.423529, 0.423529, 1 )
 show_behind_parent = true
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
 
-[node name="Wire" type="Node2D" parent="Inputs/Input/Input/InteractionPoint"]
+[node name="Wire" type="Node2D" parent="Inputs/Input/InteractionPoint"]
 show_behind_parent = true
 
-[node name="Wire" type="ColorRect" parent="Inputs/Input/Input/InteractionPoint/Wire"]
+[node name="Wire" type="ColorRect" parent="Inputs/Input/InteractionPoint/Wire"]
 show_behind_parent = true
 margin_top = -21.6667
 margin_right = 290.0
 margin_bottom = 21.6663
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( -2, -72, -57, -58, -66, 2, -56, 48, -8, 109, 15, 107, 39, 74, 71, 1, 54, -52, 15, -72 )
-
-[connection signal="clicked" from="Inputs/Input" to="Inputs/Input" method="_on_Input_clicked"]
-[connection signal="released_over" from="Inputs/Input" to="Inputs/Input" method="_on_Input_released_over"]
-[connection signal="state_changed" from="Inputs/Input" to="." method="_on_Input_state_changed"]

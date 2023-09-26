@@ -5,7 +5,6 @@
 [ext_resource path="res://scenes/Output.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/Not-gate-en.svg.png" type="Texture" id=4]
 
-
 [node name="NotGate" type="Node2D" groups=["Gate"]]
 script = ExtResource( 2 )
 
@@ -26,5 +25,5 @@ position = Vector2( -117, 0 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( -65, -72, -66, 74, 26, 13, 43, 24, 64, 11, 64, -10, 49, -25, 23, -11 )
