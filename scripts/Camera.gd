@@ -16,6 +16,10 @@ var button_heigth = 20
 export var relative_buttons_width = 0.2
 var button_width = 20
 
+var mouse_drag_start_pos
+var cam_drag_start_pos
+var is_dragged = false
+
 var moving_up = false
 var moving_down = false
 var moving_left = false
@@ -37,6 +41,15 @@ func _input(event):
 		zoom *= zoom_scale
 	elif event.is_action_pressed("zoom_out"):
 		zoom /= zoom_scale
+	elif event.is_action("drag_camera"):
+		if event.is_pressed():
+			mouse_drag_start_pos = event.position
+			cam_drag_start_pos = position
+			is_dragged = true
+		else:
+			is_dragged = false
+	elif event is InputEventMouseMotion and is_dragged:
+		position = cam_drag_start_pos + zoom * (mouse_drag_start_pos - event.position)
 	else:
 		return
 	zoom.x = clamp(zoom.x, min_zoom, max_zoom)

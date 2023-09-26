@@ -15,7 +15,7 @@ func set_state(value):
 	for input in connected_inputs:
 		input.set_state(value)
 
-func link(connection, cable, end_idx):
+func link(connection, cable):
 	connected_inputs.append(connection)
 	connected_cables.append(cable)
 	for cable in connected_cables:

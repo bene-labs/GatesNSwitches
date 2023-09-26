@@ -5,7 +5,6 @@
 [ext_resource path="res://sprites/or_gate.png" type="Texture" id=3]
 [ext_resource path="res://scripts/Gates/OrGate.gd" type="Script" id=5]
 
-
 [node name="OrGate" type="Node2D" groups=["Gate"]]
 script = ExtResource( 5 )
 
@@ -28,8 +27,6 @@ position = Vector2( -105, -29 )
 position = Vector2( -104, 31 )
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( -14, -1 )
-scale = Vector2( 0.2, 0.2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( -345, -330, -205, -190, -170, 25, -185, 170, -255, 250, -330, 295, -315, 335, 100, 280, 295, 90, 320, 5, 205, -185, 25, -305 )
+polygon = PoolVector2Array( -78, -67, -5, -58, 25, -38, 49, -3, 28, 35, 1, 53, -41, 62, -80, 63, -54, 41, -44, 3, -48, -32, -60, -50, -76, -60 )

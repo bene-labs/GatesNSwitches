@@ -1,36 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/Output.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Pin_outline.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Pin_under.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 26.0
-
-[node name="Output" type="Area2D" groups=["Output"]]
+[node name="Output" type="Sprite"]
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
 script = ExtResource( 1 )
-off_color = Color( 0.329412, 0.317647, 0.317647, 1 )
-on_color = Color( 0.141176, 0.117647, 0.788235, 1 )
 inactive_color = Color( 0.917647, 0.752941, 0.490196, 1 )
 active_color = Color( 0.882353, 0.615686, 0.184314, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
-[node name="Input" type="Sprite" parent="."]
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 2 )
-
-[node name="InteractionPoint" type="Sprite" parent="Input"]
+[node name="InteractionPoint" type="Sprite" parent="."]
 self_modulate = Color( 0.576471, 0.423529, 0.423529, 1 )
 show_behind_parent = true
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
 
-[node name="Wire" type="Node2D" parent="Input/InteractionPoint"]
+[node name="Wire" type="Node2D" parent="InteractionPoint"]
 show_behind_parent = true
 
-[node name="Wire" type="ColorRect" parent="Input/InteractionPoint/Wire"]
+[node name="Wire" type="ColorRect" parent="InteractionPoint/Wire"]
 show_behind_parent = true
 margin_left = -200.0
 margin_top = -21.6667

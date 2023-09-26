@@ -1,17 +1,22 @@
-class_name Cable extends Control
+class_name Cable extends Node2D
 
 onready var line : Line2D = $Outline/Line2D
 onready var outline : Line2D = $Outline
-onready var collision_polygon = $Area2D/CollisionPolygon2D
-onready var mouse_stop_rect = $MouseStopper
+onready var collision_shape : CollisionPolygon2D = $Area2D/CollisionShape
+var collision_rect : Rect2
+
 export var undefined_color = Color.red
 export var off_color = Color.gray
 export var on_color = Color.yellow
 export var hover_color = Color.cornflower
+export var side_offset = 26 
 
 var connected_output = null
 var connected_input = null
 var is_hovered = false
+
+func _ready():
+	CursorCollision.register(self)
 
 func update_loose_point(position) -> bool:
 	if connected_output == null:
@@ -24,16 +29,20 @@ func update_loose_point(position) -> bool:
 
 func set_point(node):
 	set_start_point(node.global_position) if node is Output else set_end_point(node.global_position)
-	
-func set_start_point(point : Vector2):
-	line.points[0] = point
-	outline.points[0] = point
-	collision_polygon.polygon[0] = Vector2(point.x - 22, point.y - 22)
-	collision_polygon.polygon[1] = Vector2(point.x + 12, point.y + 12)
 
 func adjust_color(state):
 	line.default_color = undefined_color if state.is_undefined() else \
 		(on_color if state.is_true() else off_color)
+	
+func set_start_point(point : Vector2):
+	line.points[0] = point
+	outline.points[0] = point
+	#collision_shape.position = outline.points[0] + (outline.points[1] - outline.points[0]) / 2
+
+	calc_collision(outline.points[0], outline.points[-1])
+	#collision_shape.look_at(outline.points[1])
+	#collision_shape.shape.extents.x = outline.points[0].distance_to(outline.points[1]) / 2
+	#collision_shape.shape.extents.x -= side_offset
 
 func get_start_point():
 	return line.points[0]
@@ -41,8 +50,27 @@ func get_start_point():
 func set_end_point(point : Vector2):
 	line.points[1] = point
 	outline.points[1] = point
-	collision_polygon.polygon[2] = Vector2(point.x + 22, point.y + 22)
-	collision_polygon.polygon[3] = Vector2(point.x - 12, point.y - 12)
+	
+	calc_collision(outline.points[0], outline.points[-1])
+	
+	#collision_shape.position = outline.points[0] + (outline.points[1] - outline.points[0]) / 2
+	#collision_shape.look_at(outline.points[1])
+	#collision_shape.shape.extents.x = outline.points[0].distance_to(outline.points[1]) / 2
+	#collision_shape.shape.extents.x -= side_offset
+
+func calc_collision(start, end):
+	collision_shape.polygon[0] = start + start.direction_to(end) * side_offset + \
+		start.direction_to(end).rotated(deg2rad(-90)).normalized() * outline.width / 2
+	collision_shape.polygon[1] = start + start.direction_to(end) * side_offset + \
+		start.direction_to(end).rotated(deg2rad(90)).normalized() * outline.width / 2
+	collision_shape.polygon[2] = end + end.direction_to(start) * side_offset + \
+		start.direction_to(end).rotated(deg2rad(90)).normalized() * outline.width / 2
+	collision_shape.polygon[3] = end + end.direction_to(start) * side_offset + \
+		start.direction_to(end).rotated(deg2rad(-90)).normalized() * outline.width / 2
+	
+
+func is_point_inside(point) -> bool:
+	return Geometry.is_point_in_polygon(point, collision_shape.polygon)
 
 func connect_to(connection : Connection):
 	if connection is Output:
@@ -70,6 +98,7 @@ func get_end_point():
 	return line.points[1]
 
 func _exit_tree():
+	CursorCollision.unregister(self)
 	if connected_output != null:
 		connected_output.remove_cable(self)
 	if connected_input == null:
@@ -79,17 +108,15 @@ func _exit_tree():
 
 func set_z_index(new_index):
 	outline.z_index = new_index
-	print(new_index)
-	if connected_input != null:
-		connected_input.set_z_index(new_index + 1, -new_index - 1)
-	if connected_output != null:
-		connected_output.set_z_index(new_index + 1, -new_index - 1)
 
-func _on_Area2D_mouse_entered():
+func get_z_index():
+	return outline.z_index
+
+func _on_mouse_entered():
 	outline.default_color = hover_color
 	is_hovered = true
 
-func _on_Area2D_mouse_exited():
+func _on_mouse_exited():
 	outline.default_color = Color.black
 	is_hovered = false
 

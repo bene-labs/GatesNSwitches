@@ -77,7 +77,7 @@ func create_new_cable(start_node):
 	active_cable = cable_scene.instance()
 	add_child(active_cable)
 	active_cable.connect_to(start_node)
-	active_cable.outline.z_index = start_node.z_index - 1
+	#active_cable.outline.z_index = start_node.z_index - 1
 	
 	active_start_node = start_node
 	emit_signal("active_cable_state_changed", true)
@@ -97,8 +97,8 @@ func _on_output_released(over):
 	
 func link_active_cable(end_point):
 	active_cable.connect_to(end_point)
-	active_start_node.link(end_point, active_cable, 0)
-	end_point.link(active_start_node, active_cable, 1)
+	active_start_node.link(end_point, active_cable)
+	end_point.link(active_start_node, active_cable)
 	active_cable = null
 	hide_available_connections()
 	
