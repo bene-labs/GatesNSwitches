@@ -39,7 +39,7 @@ func _ready():
 		connect("position_changed", input, "_on_position_changed")
 		connect("z_index_changed", input, "_on_z_index_changed")
 		connect("destroy", input, "_on_destroy")
-	_on_input_changed()
+	call_deferred("_on_input_changed")
 
 func _on_input_changed():
 	pass
