@@ -37,8 +37,8 @@ func _on_Input_released_over(node):
 
 func _on_z_index_changed(new_index):
 	._on_z_index_changed(new_index)
-	if weakref(connected_cable).get_ref():
-		connected_cable.set_z_index(new_index - 1)
+#	if weakref(connected_cable).get_ref():
+#		connected_cable.set_z_index(new_index - 1)
 	set_z_index(new_index)
 
 func _on_destroy():

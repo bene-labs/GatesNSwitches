@@ -35,8 +35,8 @@ func is_available():
 
 func _on_z_index_changed(new_index):
 	._on_z_index_changed(new_index)
-	for connected_cable in connected_cables:
-		connected_cable.set_z_index(new_index - 1)
+#	for connected_cable in connected_cables:
+#		connected_cable.set_z_index(new_index - 1)
 	set_z_index(new_index)
 
 func _on_destroy():

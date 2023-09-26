@@ -108,6 +108,10 @@ func _exit_tree():
 
 func set_z_index(new_index):
 	outline.z_index = new_index
+#	if connected_input != null:
+#		connected_input.set_z_index(new_index + 1)
+#	if connected_output != null:
+#		connected_output.set_z_index(new_index + 1)
 
 func get_z_index():
 	return outline.z_index
