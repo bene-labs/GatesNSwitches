@@ -44,3 +44,6 @@ func _on_z_index_changed(new_index):
 func _on_destroy():
 	if weakref(connected_cable).get_ref():
 		connected_cable.queue_free()
+
+func _exit_tree():
+	emit_signal("destroyed", self)

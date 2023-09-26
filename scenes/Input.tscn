@@ -4,7 +4,7 @@
 [ext_resource path="res://sprites/Pin_under.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Input.gd" type="Script" id=3]
 
-[node name="Input" type="Sprite"]
+[node name="Input" type="Sprite" groups=["Input"]]
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 1 )
 script = ExtResource( 3 )

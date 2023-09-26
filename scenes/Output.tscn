@@ -4,7 +4,7 @@
 [ext_resource path="res://sprites/Pin_outline.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Pin_under.png" type="Texture" id=3]
 
-[node name="Output" type="Sprite"]
+[node name="Output" type="Sprite" groups=["Output"]]
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
