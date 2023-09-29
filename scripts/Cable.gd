@@ -9,12 +9,13 @@ export var undefined_color = Color.red
 export var off_color = Color.gray
 export var on_color = Color.yellow
 export var hover_color = Color.cornflower
-export var side_offset = 26 
+export var side_offset = 5
 
 var connected_output = null
 var connected_input = null
 var is_hovered = false
-var node_count = 0
+
+var has_started_from_input = false
 
 func _ready():
 	CursorCollision.register(self)
@@ -47,18 +48,17 @@ func get_start_point():
 func set_end_point(point : Vector2):
 	line.points[-1] = point
 	outline.points[-1] = point
-	calc_collision(outline.points[-2], outline.points[-1], node_count)
+	calc_collision(outline.points[-2], outline.points[-1])
 
-func calc_collision(start, end, offset = 0):
-	var idx = offset * 4
-	collision_shape.polygon.insert(idx, start + start.direction_to(end) * side_offset + \
-		start.direction_to(end).rotated(deg2rad(-90)).normalized() * outline.width / 2)
-	collision_shape.polygon.insert(idx + 1, start + start.direction_to(end) * side_offset + \
-		start.direction_to(end).rotated(deg2rad(90)).normalized() * outline.width / 2)
-	collision_shape.polygon.insert(idx + 2, end + end.direction_to(start) * side_offset + \
-		start.direction_to(end).rotated(deg2rad(90)).normalized() * outline.width / 2)
-	collision_shape.polygon.insert(idx + 3, end + end.direction_to(start) * side_offset + \
-		start.direction_to(end).rotated(deg2rad(-90)).normalized() * outline.width / 2)
+func calc_collision(start, end):
+	collision_shape.polygon[0] = start + start.direction_to(end) * side_offset + \
+		start.direction_to(end).rotated(deg2rad(-90)).normalized() * outline.width / 2
+	collision_shape.polygon[1] = start + start.direction_to(end) * side_offset + \
+		start.direction_to(end).rotated(deg2rad(90)).normalized() * outline.width / 2
+	collision_shape.polygon[2] = end + end.direction_to(start) * side_offset + \
+		start.direction_to(end).rotated(deg2rad(90)).normalized() * outline.width / 2
+	collision_shape.polygon[3] = end + end.direction_to(start) * side_offset + \
+		start.direction_to(end).rotated(deg2rad(-90)).normalized() * outline.width / 2
 
 func is_point_inside(point) -> bool:
 	return Geometry.is_point_in_polygon(point, collision_shape.polygon)
@@ -70,24 +70,18 @@ func connect_to(connection):
 		connect_input(connection)
 
 func connect_input(input):
+	if connected_output == null:
+		has_started_from_input = true
 	connected_input = input
 	set_end_point(input.global_position)
 	input.connect("position_changed", self, "_on_input_position_changed")
 	
 func connect_output(output):
+	if connected_input == null:
+		has_started_from_input = false
 	connected_output = output
 	set_start_point(output.global_position)
 	output.connect("position_changed", self, "_on_output_position_changed")
-
-func add_cable_node(cable_node):
-	node_count += 1
-	cable_node.idx = node_count
-	cable_node.connection_type = "Input" if connected_input == null else "Output"
-	line.points.insert(node_count, cable_node.global_position)
-	outline.points.insert(node_count, cable_node.global_position)
-	calc_collision(outline.points[node_count - 1], outline.points[node_count], node_count - 1)
-	if line.points.size() > node_count + 1:
-		calc_collision(outline.points[node_count], outline.points[node_count + 1], node_count)
 
 func _on_input_position_changed(new_pos):
 	set_end_point(new_pos)
@@ -96,7 +90,8 @@ func _on_output_position_changed(new_pos):
 	set_start_point(new_pos)
 
 func get_end_point():
-	return line.points[-1]
+	return line.points[1]
+
 
 func set_z_index(new_index):
 	outline.z_index = new_index
@@ -124,9 +119,21 @@ func _input(event):
 
 func _exit_tree():
 	CursorCollision.unregister(self)
-	if connected_output != null:
-		connected_output.remove_cable(self)
-	if connected_input == null:
+	if weakref(connected_output).get_ref():
+		if connected_output is InputConnection:
+			if connected_output.connected_cable != null:
+				connected_output.connected_cable.queue_free()
+			connected_output.queue_free()
+			return
+		else:
+			connected_output.remove_cable(self)
+	if !weakref(connected_input).get_ref() or ("connected_cable" in connected_input and connected_input.connected_cable != self):
+		return
+	if connected_input is Output:
+		connected_input.remove_cable(self)
+		connected_input.delete_all_cables()
+		connected_input.queue_free()
 		return
 	connected_input.connected_cable = null
+	print("Reset state of ", connected_input.get_path())
 	connected_input.set_state(TriState.State.UNDEFINED)

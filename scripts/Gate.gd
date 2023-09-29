@@ -27,6 +27,7 @@ func _ready():
 	default_color = image.modulate
 
 	if output != null:
+		output.is_standalone = false
 		connect("position_changed", output, "_on_position_changed")
 		connect("z_index_changed", output, "_on_z_index_changed")
 		connect("destroy", output, "_on_destroy")
@@ -35,6 +36,7 @@ func _ready():
 		return
 	for input in get_node("Inputs").get_children():
 		inputs.append(input)
+		input.is_standalone = false
 		input.connect("state_changed", self, "_on_input_changed")
 		connect("position_changed", input, "_on_position_changed")
 		connect("z_index_changed", input, "_on_z_index_changed")

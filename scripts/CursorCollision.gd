@@ -58,7 +58,7 @@ func _input(event):
 	var mous_pos = get_global_mouse_position()
 	for element in elements:
 		if whitelist.size() != 0:
-			var test = element.name
+			var test = element.get_script().get_path()
 			if not whitelist.has(test):
 				continue
 			

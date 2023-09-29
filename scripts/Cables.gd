@@ -3,14 +3,16 @@ extends Node2D
 signal active_cable_state_changed(is_active)
 
 export var cable_scene = preload("res://scenes/Cable.tscn")
-export var cable_node_scene = preload("res://scenes/CableNode.tscn")
+export var cable_connection_scene = preload("res://scenes/CableConnection.tscn")
+var input_script = preload("res://scripts/Input.gd")
+var output_script = preload("res://scripts/Output.gd")
 
 var active_cable : Cable = null
 var active_start_node = null
 
 onready var inputs = get_tree().get_nodes_in_group("Input")
 onready var outputs = get_tree().get_nodes_in_group("Output")
-onready var cable_nodes = get_tree().get_nodes_in_group("CableNode")
+var cable_nodes = []
 
 var is_input_required = false
 onready var tween = $Tween
@@ -46,10 +48,10 @@ func register_output(output):
 
 func register_cable_node(cable_node):
 	cable_nodes.append(cable_node)
-	cable_node.connect("clicked", self, "_on_cable_node_clicked")
-	cable_node.connect("released_over", self, "_on_cable_node_released")
-	cable_node.connect("destroyed", self, "remove_cable_node")
-
+	cable_node.connect("clicked", self, "_on_output_clicked")
+	cable_node.connect("released_over", self, "_on_output_released")
+	cable_node.connect("destroyed", self, "remove_output")
+	
 func remove_input(input):
 	inputs.erase(input)
 	
@@ -90,7 +92,7 @@ func hide_available_connections():
 	for output in outputs:
 		output.set_inactive()
 	emit_signal("active_cable_state_changed", false)
-	CursorCollision.remove_from_whitelist("Input" if is_input_required else "Output")
+	CursorCollision.remove_from_whitelist(input_script.get_path() if is_input_required else output_script.get_path())
 
 func create_new_cable(start_node):
 	if active_cable != null:
@@ -103,7 +105,7 @@ func create_new_cable(start_node):
 	
 	active_start_node = start_node
 	emit_signal("active_cable_state_changed", true)
-	CursorCollision.add_to_whitelist("Input" if is_input_required else "Output")
+	CursorCollision.add_to_whitelist(input_script.get_path() if is_input_required else output_script.get_path())
 	
 
 func _on_input_released(over):
@@ -131,6 +133,32 @@ func link_active_cable(end_point):
 	active_cable = null
 	hide_available_connections()
 	
+func add_cable_connection():
+	if active_cable == null:
+		return
+	
+	var mouse_pos = get_global_mouse_position()
+	var new_start_point = cable_connection_scene.instance()
+	
+	new_start_point.set_script(output_script if is_input_required else input_script)
+	new_start_point.global_position = mouse_pos
+	get_tree().root.add_child(new_start_point)
+	if is_input_required:
+		new_start_point.name = "Output"
+		register_output(new_start_point)
+		active_cable.connect_input(new_start_point)
+		active_start_node.link(new_start_point, active_cable)
+		new_start_point.set_state(active_start_node.state.get_state())
+	else:
+		new_start_point.name = "Input"
+		register_input(new_start_point)
+		active_cable.connect_output(new_start_point)
+		new_start_point.link_chained_input(active_start_node, active_cable)
+		active_start_node.link(new_start_point, active_cable)
+
+	active_cable = null
+	hide_available_connections()
+	
 func remove_active_cable():
 	if active_cable == null:
 		return
@@ -143,20 +171,9 @@ func is_cable_active():
 	return active_cable != null
 
 func _input(event):
-	if Input.is_action_just_released("cable"):
-		tween.interpolate_callback(self, 0.05, "create_cable_node")
+	if active_cable != null and Input.is_action_just_released("cable"):
+		tween.interpolate_callback(self, 0.05, "add_cable_connection")
 		tween.start()
-
-func create_cable_node():
-	if active_cable == null:
-		return
-	var new_node = cable_node_scene.instance()
-	new_node.position = get_global_mouse_position()
-	get_tree().root.add_child(new_node)
-	active_cable.add_cable_node(new_node)
-	register_cable_node(new_node)
-	active_cable = null
-	hide_available_connections()
 	
 func _process(delta):
 	if active_cable != null:

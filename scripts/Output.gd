@@ -6,6 +6,9 @@ var connected_inputs = []
 var connected_cables : Array = []
 
 func _ready():
+	inactive_color = Color("eac07d")
+	active_color = Color("cd8715")
+	interactionSprite.self_modulate = inactive_color
 	set_state(TriState.State.TRUE)
 
 func set_state(value):
@@ -21,13 +24,19 @@ func link(connection, cable):
 	for cable in connected_cables:
 		cable.adjust_color(state)
 
+func delete_all_cables():
+	for cable in connected_cables:
+		cable.queue_free()
+	connected_cables.clear()
+
 func remove_cable(cable):
 	var idx_to_remove = connected_cables.find(cable)
 	if idx_to_remove < 0:
 		return
 	
 	connected_cables.remove(idx_to_remove)
-	connected_inputs[idx_to_remove].connected_output = null
+	if connected_inputs[idx_to_remove] != null and "connected_output" in connected_inputs[idx_to_remove]:
+		connected_inputs[idx_to_remove].connected_output = null
 	connected_inputs.remove(idx_to_remove)
 
 func is_available():
