@@ -185,4 +185,4 @@ func _input(event):
 	
 func _process(delta):
 	if active_cable != null:
-		assert(active_cable.update_loose_point(get_global_mouse_position()), "ERROR: Active Cable has no losse end!")
+		active_cable.update_loose_point(get_global_mouse_position())
