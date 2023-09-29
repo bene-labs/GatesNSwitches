@@ -1,5 +1,7 @@
 extends Node2D
 
+signal drag_toggled(new_state)
+
 onready var gates = get_tree().get_nodes_in_group("Gate")
 onready var cables = get_tree().get_nodes_in_group("Cables")[0]
 
@@ -39,10 +41,12 @@ func _on_gate_clicked(gate : Gate, offset: Vector2):
 	dragged_gate = gate
 	drag_offset = offset
 	gate.set_dragged()
+	emit_signal("drag_toggled", true)
 
 func _on_gate_released(gate: Gate):
 	gate.set_undragged()
 	dragged_gate = null
+	emit_signal("drag_toggled", false)
 
 func _on_gate_destroyed(gate):
 	gates.erase(gate)

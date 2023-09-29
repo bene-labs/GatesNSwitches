@@ -66,3 +66,4 @@ shape = SubResource( 4 )
 [connection signal="mouse_exited" from="Left" to="." method="_on_Left_mouse_exited"]
 [connection signal="mouse_entered" from="Right" to="." method="_on_Right_mouse_entered"]
 [connection signal="mouse_exited" from="Right" to="." method="_on_Right_mouse_exited"]
+[connection signal="drag_toggled" from="Gates" to="." method="_on_Gates_drag_toggled"]

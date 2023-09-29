@@ -135,5 +135,4 @@ func _exit_tree():
 		connected_input.queue_free()
 		return
 	connected_input.connected_cable = null
-	print("Reset state of ", connected_input.get_path())
 	connected_input.set_state(TriState.State.UNDEFINED)

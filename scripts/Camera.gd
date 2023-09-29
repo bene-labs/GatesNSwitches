@@ -131,8 +131,14 @@ func _on_Right_mouse_exited():
 
 
 func _on_Cables_active_cable_state_changed(is_active):
-	button_rect.hide() if is_active else button_rect.show()
-	$Up.input_pickable = is_active
-	$Down.input_pickable = is_active
-	$Left.input_pickable = is_active
-	$Right.input_pickable = is_active
+	set_active(!is_active)
+
+func _on_Gates_drag_toggled(value):
+	set_active(!value)
+
+func set_active(active):
+	button_rect.hide() if !active else button_rect.show()
+	$Up.input_pickable = active
+	$Down.input_pickable = active
+	$Left.input_pickable = active
+	$Right.input_pickable = active
