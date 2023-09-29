@@ -70,7 +70,7 @@ func _on_output_clicked(node):
 	create_new_cable(node)
 	
 func _on_cable_node_clicked(node):
-	is_input_required = node.connection_type == "Input"
+	is_input_required = node.connection_type != "Input"
 	show_available_connections()
 	create_new_cable(node)
 
@@ -93,17 +93,20 @@ func hide_available_connections():
 	CursorCollision.remove_from_whitelist("Input" if is_input_required else "Output")
 
 func create_new_cable(start_node):
+	CursorCollision.add_to_whitelist("Input" if is_input_required else "Output")
+	
 	if active_cable != null:
 		active_cable.queue_free()
 		active_cable = null
+	if start_node is Cable_Node:
+		active_cable = start_node.parent_cable
+		return
 	active_cable = cable_scene.instance()
 	add_child(active_cable)
 	active_cable.connect_to(start_node)
 	#active_cable.outline.z_index = start_node.z_index - 1
-	
 	active_start_node = start_node
 	emit_signal("active_cable_state_changed", true)
-	CursorCollision.add_to_whitelist("Input" if is_input_required else "Output")
 	
 
 func _on_input_released(over):
@@ -119,7 +122,7 @@ func _on_output_released(over):
 	link_active_cable(over)
 	
 func _on_cable_node_released(over):
-	if is_input_required == (over.connection_type == "Input"):
+	if is_input_required == (over.connection_type != "Input"):
 		remove_active_cable()
 		return
 	link_active_cable(over)

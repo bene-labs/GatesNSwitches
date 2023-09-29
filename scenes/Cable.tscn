@@ -20,4 +20,3 @@ default_color = Color( 0.94902, 0.94902, 0.94902, 1 )
 
 [node name="CollisionShape" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2( 10, 0 )
-polygon = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0 )
