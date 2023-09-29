@@ -136,7 +136,14 @@ func link_active_cable(end_point):
 func add_cable_connection():
 	if active_cable == null:
 		return
-	
+	for input in inputs:
+		if input.is_point_inside(get_global_mouse_position()):
+			remove_active_cable()
+			return
+	for output in outputs:
+		if output.is_point_inside(get_global_mouse_position()):
+			remove_active_cable()
+			return
 	var mouse_pos = get_global_mouse_position()
 	var new_start_point = cable_connection_scene.instance()
 	
