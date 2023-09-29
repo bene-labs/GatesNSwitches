@@ -155,7 +155,8 @@ func add_cable_connection():
 		active_cable.connect_output(new_start_point)
 		new_start_point.link_chained_input(active_start_node, active_cable)
 		active_start_node.link(new_start_point, active_cable)
-
+	
+	CursorCollision.put_in_front(new_start_point)
 	active_cable = null
 	hide_available_connections()
 	

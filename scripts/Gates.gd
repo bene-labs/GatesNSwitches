@@ -9,10 +9,8 @@ onready var button_rect = $ColorRect
 var buttons = []
 
 var dragged_gate : Gate = null
-#var hovered_element = null
 var drag_offset = Vector2.ZERO
 var is_mouse_movement = false
-
 
 func _ready():
 	for gate in gates:
@@ -56,45 +54,8 @@ func _process(delta):
 		return
 	dragged_gate.set_position(get_global_mouse_position() + drag_offset)
 
-#func hover_element(element):
-#	if element == hovered_element:
-#		return
-#	if hovered_element != null:
-#		hovered_element._on_mouse_exited()
-#	element._on_mouse_entered()
-#	hovered_element = element
-
-#func try_hover_cables(gate: Gate, mouse_pos) -> bool:
-#	for input in gate.inputs:
-#		var cable = input.connected_cable
-#		if cable != null and cable.is_point_inside(mouse_pos):
-#			hover_element(cable)
-#			return true
-#
-#	if gate.output == null:
-#		return false
-#	for cable in gate.output.connected_cables:
-#		if cable.is_point_inside(mouse_pos):
-#			hover_element(cable)
-#			return true
-#
-#	return false
-
 func _input(event):
 	is_mouse_movement = true if event is InputEventMouseMotion and event.relative else false
-#	if not is_mouse_movement or dragged_gate != null:
-#		return
-#	var mouse_pos = get_global_mouse_position()
-#	for gate in gates:
-#		if gate.is_point_inside(mouse_pos):
-#			hover_element(gate)
-#			return
-#		elif try_hover_cables(gate, mouse_pos):
-#			return
-#
-#	if hovered_element != null:
-#		hovered_element._on_mouse_exited()
-#		hovered_element = null
 
 func update_button_dimensions():
 	for i in range(buttons.size()):
