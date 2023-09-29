@@ -131,13 +131,13 @@ func _on_Right_mouse_exited():
 
 
 func _on_Cables_active_cable_state_changed(is_active):
-	set_active(!is_active)
+	set_edge_move_mode(is_active)
 
 func _on_Gates_drag_toggled(value):
-	set_active(!value)
+	set_edge_move_mode(value)
 
-func set_active(active):
-	button_rect.hide() if !active else button_rect.show()
+func set_edge_move_mode(active):
+	button_rect.hide() if active else button_rect.show()
 	$Up.input_pickable = active
 	$Down.input_pickable = active
 	$Left.input_pickable = active
