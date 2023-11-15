@@ -26,3 +26,5 @@ margin_right = 235.0
 margin_bottom = 21.6663
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="."]

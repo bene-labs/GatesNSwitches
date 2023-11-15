@@ -13,6 +13,7 @@ export var inactive_color = Color("b1e2f1")
 export var active_color = Color("65c2dd")
 onready var wire = get_node_or_null("InteractionPoint/Wire")
 onready var interactionSprite : Sprite = $InteractionPoint
+onready var tween : Tween = $Tween
 
 var is_hovered : bool = false
 var is_active : bool = false
@@ -31,7 +32,8 @@ func _ready():
 func set_state(value):
 	if value != state.get_state():
 		state.set_state(value)
-		emit_signal("state_changed")
+		tween.interpolate_callback(self, Configs.simulation_speed, "emit_signal", "state_changed")
+		tween.start()
 	else:
 		state.set_state(value)
 	self_modulate = undefined_color if state.is_undefined() else \
