@@ -1,4 +1,4 @@
-# GatesMSwitches
+# GatesNSwitches
 A Logic-Circuit builder created for the Brackeys Game Jam 2023.2.
 
 
