@@ -1,169 +1,153 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=27 format=3 uid="uid://rnlqp6h5t4ig"]
 
-[ext_resource path="res://scripts/Gates.gd" type="Script" id=1]
-[ext_resource path="res://sprites/switch_off.png" type="Texture" id=2]
-[ext_resource path="res://scripts/SpawnButton.gd" type="Script" id=3]
-[ext_resource path="res://scenes/gates/Switch.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/gates/LightBulb.tscn" type="PackedScene" id=5]
-[ext_resource path="res://sprites/icons/lightbulb.png" type="Texture" id=6]
-[ext_resource path="res://sprites/Nand-gate-en.svg.png" type="Texture" id=7]
-[ext_resource path="res://sprites/Nor-gate-en.svg.png" type="Texture" id=8]
-[ext_resource path="res://sprites/or_gate.png" type="Texture" id=9]
-[ext_resource path="res://sprites/Xor-gate-en.svg.png" type="Texture" id=10]
-[ext_resource path="res://sprites/AndGate.png" type="Texture" id=11]
-[ext_resource path="res://sprites/Xnor-gate-en.svg.png" type="Texture" id=12]
-[ext_resource path="res://sprites/Not-gate-en.svg.png" type="Texture" id=13]
-[ext_resource path="res://sprites/high_constant.png" type="Texture" id=14]
-[ext_resource path="res://sprites/low_constant.png" type="Texture" id=15]
-[ext_resource path="res://scenes/gates/XNorGate.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/gates/NotGate.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/gates/XorGate.tscn" type="PackedScene" id=18]
-[ext_resource path="res://scenes/gates/AndGate.tscn" type="PackedScene" id=19]
-[ext_resource path="res://scenes/gates/HighConstant.tscn" type="PackedScene" id=20]
-[ext_resource path="res://scenes/gates/NorGate.tscn" type="PackedScene" id=21]
-[ext_resource path="res://scenes/gates/OrGate.tscn" type="PackedScene" id=22]
-[ext_resource path="res://scenes/gates/LowConstant.tscn" type="PackedScene" id=23]
-[ext_resource path="res://scenes/gates/NandGate.tscn" type="PackedScene" id=24]
-[ext_resource path="res://sprites/4BitDigit.png" type="Texture" id=25]
-[ext_resource path="res://scenes/gates/4BitDigit.tscn" type="PackedScene" id=26]
+[ext_resource type="Script" path="res://scripts/Gates.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cjq4iji7mh7p5" path="res://sprites/switch_off.png" id="2"]
+[ext_resource type="Script" path="res://scripts/SpawnButton.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://di8v3o0xdf46d" path="res://scenes/gates/LightBulb.tscn" id="4_1ihxk"]
+[ext_resource type="Texture2D" uid="uid://cor48p1kfum6g" path="res://sprites/icons/lightbulb.png" id="6"]
+[ext_resource type="PackedScene" uid="uid://bwudgyd2ff163" path="res://scenes/gates/Switch.tscn" id="6_sfdud"]
+[ext_resource type="Texture2D" uid="uid://brfds2b0vmnga" path="res://sprites/Nand-gate-en.svg.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://dds6xyou7wdnw" path="res://sprites/Nor-gate-en.svg.png" id="8"]
+[ext_resource type="PackedScene" uid="uid://cfrmlkthki0cj" path="res://scenes/gates/LowConstant.tscn" id="8_qrg2c"]
+[ext_resource type="Texture2D" uid="uid://dasu5jbvb7g23" path="res://sprites/or_gate.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://slrs3g1bi6dw" path="res://sprites/Xor-gate-en.svg.png" id="10"]
+[ext_resource type="PackedScene" uid="uid://c75kmgkbgfkbj" path="res://scenes/gates/HighConstant.tscn" id="10_ssrla"]
+[ext_resource type="Texture2D" uid="uid://uom64d00s8iv" path="res://sprites/AndGate.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://by7b34xkwrn1x" path="res://sprites/Xnor-gate-en.svg.png" id="12"]
+[ext_resource type="PackedScene" uid="uid://c78ps0domu0ev" path="res://scenes/gates/4BitDigit.tscn" id="12_mj624"]
+[ext_resource type="Texture2D" uid="uid://bsc2rkoorfgkg" path="res://sprites/Not-gate-en.svg.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://k6yfmrd2bws6" path="res://sprites/high_constant.png" id="14"]
+[ext_resource type="PackedScene" uid="uid://bt36yelnyau0w" path="res://scenes/gates/AndGate.tscn" id="14_hxj0x"]
+[ext_resource type="Texture2D" uid="uid://decyc5tdqdgq6" path="res://sprites/low_constant.png" id="15"]
+[ext_resource type="PackedScene" uid="uid://bh2gps8ndv18o" path="res://scenes/gates/OrGate.tscn" id="16_tom8p"]
+[ext_resource type="PackedScene" uid="uid://ccr7we72nbjbe" path="res://scenes/gates/XorGate.tscn" id="18_nkh35"]
+[ext_resource type="PackedScene" uid="uid://cuxnispij51x8" path="res://scenes/gates/NandGate.tscn" id="20_r6ppd"]
+[ext_resource type="PackedScene" uid="uid://bjk8kn25heb32" path="res://scenes/gates/NorGate.tscn" id="22_cj6av"]
+[ext_resource type="PackedScene" uid="uid://hgpexjrtid1f" path="res://scenes/gates/XNorGate.tscn" id="24_bpqvx"]
+[ext_resource type="Texture2D" uid="uid://digmxknk1tr2r" path="res://sprites/4BitDigit.png" id="25"]
+[ext_resource type="PackedScene" uid="uid://bcewkxvckrtl0" path="res://scenes/gates/NotGate.tscn" id="26_qvyaf"]
 
-[node name="Gates" type="Node2D"]
+[node name="Gates" type="Control"]
 z_index = 4096
-script = ExtResource( 1 )
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_bottom = -648.0
+grow_vertical = 2
+script = ExtResource("1")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 85.0
-margin_bottom = 646.0
-color = Color( 0.352941, 0.352941, 0.388235, 0.717647 )
+[node name="ColorRect" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SpawnButton" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 3.06126
-margin_right = 74.0
-margin_bottom = 53.0613
-icon = ExtResource( 6 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("6")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 5 )
+script = ExtResource("3")
+gate_prefab = ExtResource("4_1ihxk")
 
 [node name="SpawnButton2" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 61.0613
-margin_right = 74.0
-margin_bottom = 111.061
-icon = ExtResource( 2 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("2")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 4 )
+script = ExtResource("3")
+gate_prefab = ExtResource("6_sfdud")
 
 [node name="SpawnButton3" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 121.061
-margin_right = 74.0
-margin_bottom = 171.061
-icon = ExtResource( 15 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("15")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 23 )
+script = ExtResource("3")
+gate_prefab = ExtResource("8_qrg2c")
 
 [node name="SpawnButton4" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 177.061
-margin_right = 74.0
-margin_bottom = 227.061
-icon = ExtResource( 14 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("14")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 20 )
+script = ExtResource("3")
+gate_prefab = ExtResource("10_ssrla")
 
 [node name="SpawnButton12" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 643.061
-margin_right = 74.0
-margin_bottom = 693.061
-icon = ExtResource( 25 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("25")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 26 )
+script = ExtResource("3")
+gate_prefab = ExtResource("12_mj624")
 
 [node name="SpawnButton5" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 235.061
-margin_right = 74.0
-margin_bottom = 285.061
-icon = ExtResource( 11 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("11")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 19 )
+script = ExtResource("3")
+gate_prefab = ExtResource("14_hxj0x")
 
 [node name="SpawnButton6" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 293.061
-margin_right = 74.0
-margin_bottom = 343.061
-icon = ExtResource( 9 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("9")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 22 )
+script = ExtResource("3")
+gate_prefab = ExtResource("16_tom8p")
 
 [node name="SpawnButton7" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 351.061
-margin_right = 74.0
-margin_bottom = 401.061
-icon = ExtResource( 10 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("10")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 18 )
+script = ExtResource("3")
+gate_prefab = ExtResource("18_nkh35")
 
 [node name="SpawnButton8" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 411.061
-margin_right = 74.0
-margin_bottom = 461.061
-icon = ExtResource( 7 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("7")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 24 )
+script = ExtResource("3")
+gate_prefab = ExtResource("20_r6ppd")
 
 [node name="SpawnButton9" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 467.061
-margin_right = 74.0
-margin_bottom = 517.061
-icon = ExtResource( 8 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("8")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 21 )
+script = ExtResource("3")
+gate_prefab = ExtResource("22_cj6av")
 
 [node name="SpawnButton10" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 525.061
-margin_right = 74.0
-margin_bottom = 575.061
-icon = ExtResource( 12 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("12")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 16 )
+script = ExtResource("3")
+gate_prefab = ExtResource("24_bpqvx")
 
 [node name="SpawnButton11" type="Button" parent="ColorRect"]
-margin_left = 10.0
-margin_top = 583.061
-margin_right = 74.0
-margin_bottom = 633.061
-icon = ExtResource( 13 )
-icon_align = 1
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("13")
+icon_alignment = 1
 expand_icon = true
-script = ExtResource( 3 )
-gate_prefab = ExtResource( 17 )
+script = ExtResource("3")
+gate_prefab = ExtResource("26_qvyaf")

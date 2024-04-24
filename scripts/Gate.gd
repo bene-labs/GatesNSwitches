@@ -7,13 +7,13 @@ signal z_index_changed(new_index)
 signal destroy
 signal destroyed(Gate)
 
-export var hover_color = Color.lightblue
+var hover_color = Color.LIGHT_BLUE
 
 var default_color
 
-onready var output = get_node_or_null("Output")
-onready var collision_shape = $Area2D/CollisionPolygon2D
-onready var image = $Sprite
+@onready var output = get_node_or_null("Output")
+@onready var collision_shape = $Area2D/CollisionPolygon2D
+@onready var image = $Sprite
 
 var inputs = []
 var is_hovered = false
@@ -28,19 +28,19 @@ func _ready():
 
 	if output != null:
 		output.is_standalone = false
-		connect("position_changed", output, "_on_position_changed")
-		connect("z_index_changed", output, "_on_z_index_changed")
-		connect("destroy", output, "_on_destroy")
+		position_changed.connect(output._on_position_changed)
+		z_index_changed.connect(output._on_z_index_changed)
+		destroy.connect(output._on_destroy)
 	
 	if get_node_or_null("Inputs") == null:
 		return
 	for input in get_node("Inputs").get_children():
 		inputs.append(input)
 		input.is_standalone = false
-		input.connect("state_changed", self, "_on_input_changed")
-		connect("position_changed", input, "_on_position_changed")
-		connect("z_index_changed", input, "_on_z_index_changed")
-		connect("destroy", input, "_on_destroy")
+		input.state_changed.connect(_on_input_changed)
+		position_changed.connect(input._on_position_changed)
+		z_index_changed.connect(input._on_z_index_changed)
+		destroy.connect(input._on_destroy)
 	call_deferred("_on_input_changed")
 
 func _on_input_changed():
@@ -52,7 +52,7 @@ func _on_mouse_entered():
 	
 func _on_mouse_exited():
 	if drag_mode_queded:
-		emit_signal("clicked", self, global_position - get_global_mouse_position())
+		clicked.emit(self, global_position - get_global_mouse_position())
 		drag_mode_queded = false
 	image.modulate = default_color
 	is_hovered = false
@@ -78,7 +78,7 @@ func _input(event):
 		call_deferred("queue_free")
 	elif Input.is_action_just_pressed("gate") and not drag_mode_queded:
 		drag_mode_queded = true
-		yield(get_tree().create_timer(0.1), "timeout")
+		await get_tree().create_timer(0.1).timeout
 		try_start_drag_mode()
 	
 	if Input.is_action_just_pressed("rotate_gate"):
@@ -94,24 +94,26 @@ func try_start_drag_mode():
 	emit_signal("clicked", self, global_position - get_global_mouse_position())
 	return true
 
-func set_position(value):
+func update_position(value):
 	position = value
 	emit_signal("position_changed")
 
+@warning_ignore("native_method_override")
 func set_z_index(value):
 	image.z_index = value
 	sprite_z_index = value
 	emit_signal("z_index_changed", value)
-	
+
+@warning_ignore("native_method_override")
 func get_z_index():
 	return sprite_z_index
 	
 func rotate_counterclockwise():
-	rotate(deg2rad(90.0))
-	set_position(position)
+	rotate(deg_to_rad(90.0))
+	update_position(position)
 	
 func is_point_inside(point):
-	return Geometry.is_point_in_polygon(to_local(point), collision_shape.polygon)
+	return Geometry2D.is_point_in_polygon(to_local(point), collision_shape.polygon)
 
 func _exit_tree():
 	emit_signal("destroyed", self)

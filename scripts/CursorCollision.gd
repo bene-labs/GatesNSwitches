@@ -41,7 +41,7 @@ func compare_z_index(elem1, elem2) -> bool:
 	return z_index1 > z_index2
 		
 func update_order():
-	elements.sort_custom(self, "compare_z_index")
+	elements.sort_custom(compare_z_index)
 
 func put_in_front(element):
 	elements.erase(element)

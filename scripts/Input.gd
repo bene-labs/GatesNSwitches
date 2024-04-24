@@ -6,15 +6,16 @@ var connected_output = null
 var connected_input = null
 var connected_cable = null
 var extra_cable = null
-onready var cables = get_tree().get_nodes_in_group("Cables")[0]
+@onready var cables = get_tree().get_nodes_in_group("Cables")[0]
+
 
 func _ready():
-	connect("clicked", self, "_on_Input_clicked")
-	connect("released_over", self, "_on_Input_released_over")
-
+	super._ready()
+	clicked.connect(_on_Input_clicked)
+	released_over.connect(_on_Input_released_over)
 
 func set_state(value):
-	.set_state(value)
+	super.set_state(value)
 	if weakref(extra_cable).get_ref():
 		extra_cable.adjust_color(state)
 	if  weakref(connected_input).get_ref() and connected_input.connected_cable == extra_cable:
@@ -37,8 +38,8 @@ func link(connection, cable):
 		extra_cable.queue_free()
 	connected_output = connection
 	connected_cable = cable
-	print("connected '", connection.get_path(), "' with '", get_path(), "' => state: ", connection.state.get_state())
-	set_state(connection.state.get_state())
+	#print("connected '", connection.get_path(), "' with '", get_path(), "' => state: ", connection.state.value)
+	set_state(connection.state.value)
 
 func is_available():
 	return true
@@ -59,7 +60,7 @@ func _on_Input_released_over(node):
 		connected_output = null
 
 func _on_z_index_changed(new_index):
-	._on_z_index_changed(new_index)
+	super._on_z_index_changed(new_index)
 #	if weakref(connected_cable).get_ref():
 #		connected_cable.set_z_index(new_index - 1)
 	set_z_index(new_index)
@@ -69,4 +70,5 @@ func _on_destroy():
 		connected_cable.queue_free()
 
 func _exit_tree():
+	super._exit_tree()
 	emit_signal("destroyed", self)

@@ -1,7 +1,7 @@
 extends Gate
 
 func _on_input_changed():
-	._on_input_changed()
+	super._on_input_changed()
 	
 	if inputs[0].state.is_undefined():
 		output.set_state(TriState.State.UNDEFINED)

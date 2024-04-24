@@ -1,7 +1,7 @@
 extends Gate
 
 func _on_input_changed():
-	._on_input_changed()
+	super._on_input_changed()
 
 	var step
 	var value = 0

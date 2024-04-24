@@ -1,15 +1,15 @@
 class_name Cable extends Node2D
 
-onready var line : Line2D = $Outline/Line2D
-onready var outline : Line2D = $Outline
-onready var collision_shape : CollisionPolygon2D = $Area2D/CollisionShape
+@onready var line : Line2D = $Outline/Line2D
+@onready var outline : Line2D = $Outline
+@onready var collision_shape : CollisionPolygon2D = $Area2D/CollisionShape
 var collision_rect : Rect2
 
-export var undefined_color = Color.red
-export var off_color = Color.gray
-export var on_color = Color.yellow
-export var hover_color = Color.cornflower
-export var side_offset = 5
+var undefined_color = Color.RED
+var off_color = Color("545151")
+var on_color = Color("241ec9")
+var hover_color = Color.CORNFLOWER_BLUE
+var side_offset = 5
 
 var connected_output = null
 var connected_input = null
@@ -33,9 +33,14 @@ func set_point(node):
 	set_start_point(node.global_position) if node is Output else set_end_point(node.global_position)
 
 func adjust_color(state):
-	line.default_color = undefined_color if state.is_undefined() else \
-		(on_color if state.is_true() else off_color)
-	
+	match state.value:
+		TriState.State.TRUE:
+			line.default_color = on_color
+		TriState.State.FALSE:
+			line.default_color = off_color
+		_:
+			line.default_color = undefined_color
+
 func set_start_point(point : Vector2):
 	line.points[0] = point
 	outline.points[0] = point
@@ -52,16 +57,16 @@ func set_end_point(point : Vector2):
 
 func calc_collision(start, end):
 	collision_shape.polygon[0] = start + start.direction_to(end) * side_offset + \
-		start.direction_to(end).rotated(deg2rad(-90)).normalized() * outline.width / 2
+		start.direction_to(end).rotated(deg_to_rad(-90)).normalized() * outline.width / 2
 	collision_shape.polygon[1] = start + start.direction_to(end) * side_offset + \
-		start.direction_to(end).rotated(deg2rad(90)).normalized() * outline.width / 2
+		start.direction_to(end).rotated(deg_to_rad(90)).normalized() * outline.width / 2
 	collision_shape.polygon[2] = end + end.direction_to(start) * side_offset + \
-		start.direction_to(end).rotated(deg2rad(90)).normalized() * outline.width / 2
+		start.direction_to(end).rotated(deg_to_rad(90)).normalized() * outline.width / 2
 	collision_shape.polygon[3] = end + end.direction_to(start) * side_offset + \
-		start.direction_to(end).rotated(deg2rad(-90)).normalized() * outline.width / 2
+		start.direction_to(end).rotated(deg_to_rad(-90)).normalized() * outline.width / 2
 
 func is_point_inside(point) -> bool:
-	return Geometry.is_point_in_polygon(point, collision_shape.polygon)
+	return Geometry2D.is_point_in_polygon(point, collision_shape.polygon)
 
 func connect_to(connection):
 	if connection is Output:
@@ -74,14 +79,14 @@ func connect_input(input):
 		has_started_from_input = true
 	connected_input = input
 	set_end_point(input.global_position)
-	input.connect("position_changed", self, "_on_input_position_changed")
+	input.position_changed.connect(_on_input_position_changed)
 	
 func connect_output(output):
 	if connected_input == null:
 		has_started_from_input = false
 	connected_output = output
 	set_start_point(output.global_position)
-	output.connect("position_changed", self, "_on_output_position_changed")
+	output.position_changed.connect(_on_output_position_changed)
 
 func _on_input_position_changed(new_pos):
 	set_end_point(new_pos)
@@ -92,7 +97,7 @@ func _on_output_position_changed(new_pos):
 func get_end_point():
 	return line.points[1]
 
-
+@warning_ignore("native_method_override")
 func set_z_index(new_index):
 	outline.z_index = new_index
 #	if connected_input != null:
@@ -100,6 +105,7 @@ func set_z_index(new_index):
 #	if connected_output != null:
 #		connected_output.set_z_index(new_index + 1)
 
+@warning_ignore("native_method_override")
 func get_z_index():
 	return outline.z_index
 
@@ -108,7 +114,7 @@ func _on_mouse_entered():
 	is_hovered = true
 
 func _on_mouse_exited():
-	outline.default_color = Color.black
+	outline.default_color = Color.BLACK
 	is_hovered = false
 
 func _input(event):

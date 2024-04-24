@@ -1,6 +1,7 @@
 class_name Switch extends Gate
 
 func _ready():
+	super._ready()
 	output.set_state(TriState.State.FALSE)
 
 func toggle():
@@ -8,7 +9,7 @@ func toggle():
 	output.set_state(TriState.State.TRUE if image.animation == "on" else TriState.State.FALSE)
 
 func try_start_drag_mode():
-	if not .try_start_drag_mode():
+	if not super.try_start_drag_mode():
 		toggle()
 
 func _process(delta):

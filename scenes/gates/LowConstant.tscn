@@ -1,46 +1,46 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://cfrmlkthki0cj"]
 
-[ext_resource path="res://scripts/Gates/LowConstant.gd" type="Script" id=1]
-[ext_resource path="res://fonts/Roboto/Roboto-Black.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://scenes/Output.tscn" type="PackedScene" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-size = 72
-font_data = ExtResource( 2 )
+[ext_resource type="Script" path="res://scripts/Gates/LowConstant.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://scenes/Output.tscn" id="3"]
+[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="3_vp7vt"]
 
 [node name="LowConstant" type="Node2D" groups=["Gate"]]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="Output" parent="." instance=ExtResource( 3 )]
+[node name="Output" parent="." instance=ExtResource("3")]
 show_behind_parent = true
-position = Vector2( 127, 39 )
-
-[node name="Sprite" type="Node2D" parent="."]
-
-[node name="Outline" type="ColorRect" parent="Sprite"]
-margin_right = 80.0
-margin_bottom = 80.0
-color = Color( 0, 0, 0, 1 )
-
-[node name="ColorRect" type="ColorRect" parent="Sprite"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 76.0
-margin_bottom = 76.0
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="Sprite/ColorRect"]
-margin_left = -4.0
-margin_top = -4.0
-margin_right = 76.0
-margin_bottom = 75.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "0"
-align = 1
-valign = 1
+position = Vector2(121, 40)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( 1, -2, 81, -1, 81, 80, 0, 80 )
+polygon = PackedVector2Array(1, -2, 81, -1, 81, 80, 0, 80)
+
+[node name="Sprite" type="Node2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="Outline" type="ColorRect" parent="Sprite"]
+offset_right = 80.0
+offset_bottom = 80.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Sprite"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 78.0
+offset_bottom = 78.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Sprite/ColorRect"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -8.0
+offset_right = 77.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vp7vt")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

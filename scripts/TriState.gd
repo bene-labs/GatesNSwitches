@@ -8,25 +8,26 @@ enum State {
 	UNDEFINED
 }
 
-var state = State.UNDEFINED setget set_state, get_state
+var value : State = State.UNDEFINED:
+	set(state): 
+		value = state
+		emit_signal("state_changed")
+	get: return value
 
-func set_state(value):
-	state = value
-	emit_signal("state_changed")
-
-func get_state():
-	return state
 
 func is_undefined():
-	return state == State.UNDEFINED
-	
+	return value == State.UNDEFINED
+
+
 func is_true():
-	return state == State.TRUE
-	
+	return value == State.TRUE
+
+
 func is_false():
-	return state == State.FALSE
-	
+	return value == State.FALSE
+
+
 func equals(other):
 	return State.UNDEFINED if \
-	state == State.UNDEFINED or other.state == State.UNDEFINED else \
-		(State.TRUE if state == other.state else State.FALSE)
+	value == State.UNDEFINED or other.value == State.UNDEFINED else \
+		(State.TRUE if value == other.value else State.FALSE)

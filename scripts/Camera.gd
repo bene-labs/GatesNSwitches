@@ -1,19 +1,19 @@
 extends Camera2D
 
-export var relative_speed = 0.5
+var relative_speed = 0.5
 var speed = 50
-export var zoom_scale = 1.02
-export var max_zoom = 4.0
-export var min_zoom = 0.25
+var zoom_scale = 1.02
+var max_zoom = 4.0
+var min_zoom = 0.25
 
-export var relative_collision_width = 0.04
+var relative_collision_width = 0.04
 var collision_width : int = 20
-export var relative_collision_height = 0.04
+var relative_collision_height = 0.04
 var collision_height : int = 20
 
-export var relative_buttons_heigth = 1.0
+var relative_buttons_heigth = 1.0
 var button_heigth = 20
-export var relative_buttons_width = 0.2
+var relative_buttons_width = 0.2
 var button_width = 20
 
 var mouse_drag_start_pos
@@ -25,16 +25,16 @@ var moving_down = false
 var moving_left = false
 var moving_right = false
 
-onready var up_collision = $Up/CollisionShape2D
-onready var down_collision = $Down/CollisionShape2D
-onready var left_collision = $Left/CollisionShape2D
-onready var right_collision = $Right/CollisionShape2D
-onready var button_rect = $Gates/ColorRect
+@export var button_container : Control
+@onready var up_collision = $Up/CollisionShape2D
+@onready var down_collision = $Down/CollisionShape2D
+@onready var left_collision = $Left/CollisionShape2D
+@onready var right_collision = $Right/CollisionShape2D
 
 
 func _ready():
-	get_tree().get_root().connect("size_changed", self, "update_move_rects")
-	update_move_rects()
+	get_tree().get_root().size_changed.connect(update_move_rects)
+	#update_move_rects()
 
 func _input(event):
 	if event.is_action_pressed("zoom_in"):
@@ -54,7 +54,7 @@ func _input(event):
 		return
 	zoom.x = clamp(zoom.x, min_zoom, max_zoom)
 	zoom.y = clamp(zoom.y, min_zoom, max_zoom)
-	update_move_rects()
+	#update_move_rects()
 	
 
 func _process(delta):
@@ -74,7 +74,7 @@ func _process(delta):
 	elif moving_right or Input.is_action_pressed("camera_right"):
 		position.x += speed * delta
 	
-	update_move_rects()
+	#update_move_rects()
 	
 func update_move_rects():
 	var ctrans = get_canvas_transform()
@@ -101,9 +101,9 @@ func update_move_rects():
 	right_collision.global_position = Vector2(max_pos.x - collision_width / 2, max_pos.y - view_size.y / 2)
 	right_collision.shape.extents = Vector2(collision_width, view_size.y)
 
-	button_rect.rect_global_position = Vector2(min_pos.x + button_width * 0.025, min_pos.y + (view_size.y * (1.0 - relative_buttons_heigth)) / 2)
-	button_rect.rect_size = Vector2(button_width, button_heigth)
-	$Gates.update_button_dimensions()
+	#button_container.global_position = Vector2(min_pos.x + button_width * 0.025, min_pos.y + (view_size.y * (1.0 - relative_buttons_heigth)) / 2)
+	#button_container.size = Vector2(button_width, button_heigth)
+	#$Gates.update_button_dimensions()
 
 func _on_Up_mouse_entered():
 	moving_up = true
@@ -137,7 +137,10 @@ func _on_Gates_drag_toggled(value):
 	set_edge_move_mode(value)
 
 func set_edge_move_mode(active):
-	button_rect.hide() if active else button_rect.show()
+	if active:
+		button_container.hide()
+	else:
+		button_container.show()
 	$Up.input_pickable = active
 	$Down.input_pickable = active
 	$Left.input_pickable = active

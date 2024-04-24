@@ -1,353 +1,353 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://5c0h6y1alh76"]
 
-[ext_resource path="res://sprites/abstract-horizontal-grid-lines-graph-style-graphic-design/sl_072622_51930_13.jpg" type="Texture" id=1]
+[ext_resource type="Texture2D" uid="uid://b0i06u1rwuaii" path="res://sprites/abstract-horizontal-grid-lines-graph-style-graphic-design/sl_072622_51930_13.jpg" id="1"]
 
 [node name="Background" type="Node2D"]
 
-[node name="Backgropund7" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -3383, -26 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund7" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-3383, -26)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund7"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund7"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund7"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund7"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund7"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund7"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund8" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -3383, 1859 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund8" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-3383, 1859)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund8"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund8"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund8"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6588, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund8"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6588, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund8"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund8"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund9" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 3324, -26 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund9" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(3324, -26)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund9"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund9"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund9"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund9"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund9"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund9"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund10" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 3324, 1859 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund10" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(3324, 1859)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund10"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund10"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund10"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6588, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund10"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6588, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund10"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund10"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund11" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -30, -26 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund11" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-30, -26)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund11"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund11"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund11"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund11"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund11"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund11"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund12" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -30, 1859 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund12" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-30, 1859)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund12"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund12"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund12"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6588, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund12"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6588, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund12"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund12"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund5" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -3384, -3796 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund5" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-3384, -3796)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund5"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund5"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund5"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund5"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund5"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund5"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund6" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -3384, -1911 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund6" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-3384, -1911)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund6"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund6"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund6"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6588, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund6"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6588, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund6"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund6"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 3323, -3796 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund3" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(3323, -3796)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund3"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund3"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund3"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund3"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund3"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund3"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 3323, -1911 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund4" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(3323, -1911)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund4"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund4"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund4"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6588, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund4"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6588, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund4"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund4"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -31, -3796 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund2" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-31, -3796)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund2"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund2"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund2"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund2"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund2"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund2"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund" type="Sprite" parent="."]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -31, -1911 )
-scale = Vector2( 0.25, 0.25 )
+[node name="Backgropund" type="Sprite2D" parent="."]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-31, -1911)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund2" type="Sprite" parent="Backgropund"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6592, 0 )
+[node name="Backgropund2" type="Sprite2D" parent="Backgropund"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6592, 0)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund3" type="Sprite" parent="Backgropund"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( -6588, 3768 )
+[node name="Backgropund3" type="Sprite2D" parent="Backgropund"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(-6588, 3768)
+texture = ExtResource("1")
 centered = false
 
-[node name="Backgropund4" type="Sprite" parent="Backgropund"]
-self_modulate = Color( 0.803922, 0.803922, 0.803922, 1 )
-position = Vector2( 0, 3768 )
+[node name="Backgropund4" type="Sprite2D" parent="Backgropund"]
+self_modulate = Color(0.803922, 0.803922, 0.803922, 1)
 z_index = -4096
-texture = ExtResource( 1 )
+position = Vector2(0, 3768)
+texture = ExtResource("1")
 centered = false

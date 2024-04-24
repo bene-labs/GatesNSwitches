@@ -1,23 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://d3e0ircf87vvo"]
 
-[ext_resource path="res://scripts/Cable.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://scripts/Cable.gd" id="1"]
 
 [node name="Cable" type="Node2D"]
 z_index = -1
-script = ExtResource( 1 )
-on_color = Color( 0.141176, 0.117647, 0.788235, 1 )
+script = ExtResource("1")
 
 [node name="Outline" type="Line2D" parent="."]
-points = PoolVector2Array( 0, 0, 20, 0 )
+points = PackedVector2Array(0, 0, 20, 0)
 width = 18.0
-default_color = Color( 0, 0, 0, 1 )
+default_color = Color(0, 0, 0, 1)
 
 [node name="Line2D" type="Line2D" parent="Outline"]
-points = PoolVector2Array( 0, 0, 20, 0 )
-default_color = Color( 0.94902, 0.94902, 0.94902, 1 )
+points = PackedVector2Array(0, 0, 20, 0)
+default_color = Color(0.94902, 0.94902, 0.94902, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2( 10, 0 )
-polygon = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0 )
+position = Vector2(10, 0)
+polygon = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)

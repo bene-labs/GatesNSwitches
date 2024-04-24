@@ -1,11 +1,11 @@
-extends Node2D
+extends Control
 
 signal drag_toggled(new_state)
 
-onready var gates = get_tree().get_nodes_in_group("Gate")
-onready var cables = get_tree().get_nodes_in_group("Cables")[0]
+@onready var gates = get_tree().get_nodes_in_group("Gate")
+@onready var cables = get_tree().get_nodes_in_group("Cables")[0]
 
-onready var button_rect = $ColorRect
+@onready var button_rect = $ColorRect
 var buttons = []
 
 var dragged_gate : Gate = null
@@ -14,13 +14,13 @@ var is_mouse_movement = false
 
 func _ready():
 	for gate in gates:
-		gate.connect("clicked", self, "_on_gate_clicked")
-		gate.connect("released", self, "_on_gate_released")
-		gate.connect("destroyed", self, "_on_gate_destroyed")
+		gate.clicked.connect(_on_gate_clicked)
+		gate.released.connect(_on_gate_released)
+		gate.destroyed.connect(_on_gate_destroyed)
 	call_deferred("apply_gate_z_index")
 	for button in button_rect.get_children():
 		buttons.append(button)
-		button.connect("gate_spawned", self, "_on_gate_spawned")
+		button.gate_spawned.connect(_on_gate_spawned)
 
 func put_gate_in_front(gate: Gate):
 	gates.erase(gate)
@@ -52,21 +52,21 @@ func _on_gate_destroyed(gate):
 func _process(delta):
 	if dragged_gate == null or not is_mouse_movement:
 		return
-	dragged_gate.set_position(get_global_mouse_position() + drag_offset)
+	dragged_gate.update_position(dragged_gate.get_global_mouse_position() + drag_offset)
 
 func _input(event):
 	is_mouse_movement = true if event is InputEventMouseMotion and event.relative else false
 
 func update_button_dimensions():
 	for i in range(buttons.size()):
-		buttons[i].rect_size = Vector2(button_rect.rect_size.x * 0.9,  button_rect.rect_size.y / (buttons.size() + 1.25) )
-		buttons[i].rect_position = Vector2(button_rect.rect_size.x * 0.05,  button_rect.rect_size.y / buttons.size() * i)
+		buttons[i].size = Vector2(button_rect.size.x * 0.9,  button_rect.size.y / (buttons.size() + 1.25) )
+		buttons[i].global_position = Vector2(button_rect.size.x * 0.05,  button_rect.size.y / buttons.size() * i)
 
 func _on_gate_spawned(new_gate : Gate):
 	gates.append(new_gate)
-	new_gate.connect("clicked", self, "_on_gate_clicked")
-	new_gate.connect("released", self, "_on_gate_released")
-	new_gate.connect("destroyed", self, "_on_gate_destroyed")
+	new_gate.clicked.connect(_on_gate_clicked)
+	new_gate.released.connect(_on_gate_released)
+	new_gate.destroyed.connect(_on_gate_destroyed)
 	for input in new_gate.inputs:
 		cables.register_input(input)
 	if new_gate.output != null:

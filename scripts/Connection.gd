@@ -1,19 +1,20 @@
-class_name Connection extends Sprite
+class_name Connection extends Sprite2D
 
 signal state_changed
 signal clicked(node)
 signal released_over(node)
 signal position_changed(new_pos)
 
-export var collision_radius = 26.0
-export var undefined_color = Color.red
-export var off_color = Color("545151")
-export var on_color = Color("241ec9")
-export var inactive_color = Color("b1e2f1")
-export var active_color = Color("65c2dd")
-onready var wire = get_node_or_null("InteractionPoint/Wire")
-onready var interactionSprite : Sprite = $InteractionPoint
-onready var tween : Tween = $Tween
+var collision_radius = 26.0
+var undefined_color = Color.RED
+var off_color = Color("545151")
+var on_color = Color("241ec9")
+var inactive_color = Color("b1e2f1")
+var active_color = Color("65c2dd")
+
+@onready var wire = get_node_or_null("InteractionPoint/Wire")
+@onready var interactionSprite : Sprite2D = %InteractionPoint
+@onready var base_scale = interactionSprite.scale
 
 var is_hovered : bool = false
 var is_active : bool = false
@@ -30,24 +31,31 @@ func _ready():
 	CursorCollision.register(self)
 
 func set_state(value):
-	if value != state.get_state():
-		state.set_state(value)
-		tween.interpolate_callback(self, Configs.simulation_speed, "emit_signal", "state_changed")
-		tween.start()
-	else:
-		state.set_state(value)
-	self_modulate = undefined_color if state.is_undefined() else \
-		(on_color if state.is_true() else off_color)
+	match value:
+		TriState.State.TRUE:
+			self_modulate = on_color
+		TriState.State.FALSE:
+			self_modulate = off_color
+		_:
+			self_modulate = undefined_color
+	if value == state.value:
+		return
+	state.value = value
+	
+	$DelayTimer.wait_time = Configs.simulation_speed
+	$DelayTimer.start()
+	await $DelayTimer.timeout
+	state_changed.emit()
 
 func is_point_inside(point):
 	return global_position.distance_to(point) <= collision_radius
 	
 func _on_mouse_entered():
-	interactionSprite.scale = Vector2(1.15, 1.15)
+	interactionSprite.scale = base_scale * 1.15
 	is_hovered = true
 	
 func _on_mouse_exited():
-	interactionSprite.scale = Vector2.ONE
+	interactionSprite.scale = base_scale
 	is_hovered = false
 	
 func set_active():
@@ -88,14 +96,13 @@ func is_available():
 func _on_z_index_changed(new_index):
 	pass
 
+@warning_ignore("native_method_override")
 func set_z_index(value, wire_offset = 0):
 	z_index = value
 	if wire == null:
 		return
 	wire.z_index = wire_offset
 
-func get_z_index():
-	return z_index
 	
 func _on_position_changed():
 	emit_signal("position_changed", global_position)

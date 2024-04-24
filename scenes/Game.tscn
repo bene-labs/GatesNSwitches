@@ -1,28 +1,41 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://cvvdy5s8c14h5"]
 
-[ext_resource path="res://scenes/Cables.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/Camera.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/gates/LightBulb.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/gates/Switch.tscn" type="PackedScene" id=14]
+[ext_resource type="PackedScene" uid="uid://crca0b4if23s0" path="res://scenes/Cables.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://5c0h6y1alh76" path="res://scenes/Background.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://b86inyphjxolg" path="res://scenes/Camera.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://rnlqp6h5t4ig" path="res://scenes/Gates.tscn" id="6_cfq4g"]
+[ext_resource type="PackedScene" uid="uid://di8v3o0xdf46d" path="res://scenes/gates/LightBulb.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://bwudgyd2ff163" path="res://scenes/gates/Switch.tscn" id="14"]
 
 [node name="Game" type="Node2D"]
 
-[node name="Background" parent="." instance=ExtResource( 5 )]
-scale = Vector2( 1.25, 1.25 )
+[node name="Background" parent="." instance=ExtResource("5")]
+scale = Vector2(1.25, 1.25)
 
-[node name="Camera" parent="." instance=ExtResource( 6 )]
+[node name="Camera3D" parent="." node_paths=PackedStringArray("button_container") instance=ExtResource("6")]
 limit_left = -6250
 limit_top = -4720
 limit_right = 6250
 limit_bottom = 4720
+button_container = NodePath("../CanvasLayer/Gates")
 
-[node name="Cables" parent="." instance=ExtResource( 2 )]
+[node name="Cables" parent="." instance=ExtResource("2")]
 
-[node name="LightBulb" parent="." instance=ExtResource( 7 )]
-position = Vector2( 551, 124 )
+[node name="LightBulb" parent="." instance=ExtResource("7")]
+position = Vector2(551, 124)
 
-[node name="Switch" parent="." instance=ExtResource( 14 )]
-position = Vector2( 180, 353 )
+[node name="Switch" parent="." instance=ExtResource("14")]
+position = Vector2(180, 353)
 
-[connection signal="active_cable_state_changed" from="Cables" to="Camera" method="_on_Cables_active_cable_state_changed"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Gates" parent="CanvasLayer" instance=ExtResource("6_cfq4g")]
+anchors_preset = -1
+anchor_top = 0.013
+offset_left = 19.0
+offset_top = -7.424
+offset_right = 110.0
+offset_bottom = -4.0
+
+[connection signal="active_cable_state_changed" from="Cables" to="Camera3D" method="_on_Cables_active_cable_state_changed"]
+[connection signal="drag_toggled" from="CanvasLayer/Gates" to="Camera3D" method="_on_Gates_drag_toggled"]
