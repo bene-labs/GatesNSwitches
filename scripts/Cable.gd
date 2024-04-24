@@ -124,7 +124,6 @@ func _exit_tree():
 			if connected_output.connected_cable != null:
 				connected_output.connected_cable.queue_free()
 			connected_output.queue_free()
-			return
 		else:
 			connected_output.remove_cable(self)
 	if !weakref(connected_input).get_ref() or ("connected_cable" in connected_input and connected_input.connected_cable != self):
